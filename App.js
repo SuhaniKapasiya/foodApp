@@ -1,5 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import {products} from "./data"
 
 /**
  * Header
@@ -19,6 +20,10 @@ import ReactDOM from "react-dom/client";
  *
  */
 
+ const data = products;
+ console.log("data-------------->",data);
+ 
+
 const Header = () => {
   return (
     <div className="header">
@@ -28,11 +33,10 @@ const Header = () => {
           src="https://res.cloudinary.com/dtqnuyqei/image/upload/v1731256340/foodLogo_jhfbj2.png"
         />
       </div>
-
       <div className="nav-item">
         <ul>
           <li>Home</li>
-          <li>About</li>
+          <li>About Us</li>
           <li>Contact Us</li>
           <li>Cart</li>
         </ul>
@@ -41,39 +45,62 @@ const Header = () => {
   );
 };
 
-//inline Style
+
 const styleCard = {
-    backgroundColor :"#f0f0f0"
+     backgroundColor :"#f0f0f0"
+
 }
-const RestaurantCard =()=>{
-    return(
-        <div className="res-card" style ={styleCard}>
-       <h1>Golu Brother Momo</h1>
-        </div>
-    )
-}
-const Body=()=>{
+const RestaurantCard = ({ resdata }) => {
+
   return (
-    <div className="body">
-      <div className="search">Search</div>
+    <div className="res-card " style={styleCard}>
+      <div>
+        <img className="res-logo" src={resdata.image} />
+      </div>
+      <div>
+        <h1 className="title">{resdata.title}</h1>
+        <h3>{resdata.category}</h3>
+        <h3>Price  {resdata.price}</h3>
+        <h3>Rating  {resdata.rating.rate}</h3> 
+        <h3>Delivey  {resdata.rating.count} minutes</h3>
+      </div>
+    </div>
+  );
+};
+
+const Body = ()=>{
+  return (
+    <div>
+      {/* -Search */}
+      <div className="search"> 
+        <h1>Search</h1>
+      </div>
+      {/* * -RestaurantContainer */}
       <div className="res-container">
-        <RestaurantCard/>
+        {data.map((restaurant) => (
+          <RestaurantCard key={restaurant.id} resdata={restaurant} />
+        ))}
       </div>
     </div>
   );
 }
+
 const AppLayout = () => {
- return(
-     <div className="app">
-    {/* //Header */}
-    <Header />
-    {/* Body  */}
-    <Body/>
-   {/* Footer */}
-  </div>
- )
+  return (
+    <div>
+      {/* Header */}
+       <Header/>
+      {/* Body */}
+      <Body/>
+      {/* Footer */}
+    </div>
+  );
 };
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(<AppLayout />);
+
+
