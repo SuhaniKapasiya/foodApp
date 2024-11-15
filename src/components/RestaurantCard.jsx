@@ -1,9 +1,4 @@
-
-
-
-const RestaurantCard = ({ resdata }) => {
-
-   
+const RestaurantCard = ({ resdata }) => {   
 const styleCard = {
   backgroundColor: "#f0f0f0",
 };

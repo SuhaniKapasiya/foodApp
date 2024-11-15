@@ -13,3 +13,8 @@ impprt component from "path";
 export const Componet;
 import {componet} from "path";
 
+
+#React Hooks
+(Normal Js utility fun)
+-useState() =>Superpowerful State Variable in react
+-useEffect()=>
