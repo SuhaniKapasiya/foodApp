@@ -6,7 +6,7 @@ const Body = () => {
   //Local State Variable => Super powerful variabl
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
   const [searchText, setsearchText] = useState("");
-  const [filteredRestaurant, setfilteredRestaurant] = useState("");
+  const [filteredRestaurant, setfilteredRestaurant] = useState([]);
 
   //Whenevr state variable update,react trigger a reconciliation cycle(re-render the componet )
   console.log("Body render ");
@@ -14,38 +14,6 @@ const Body = () => {
   useEffect(() => {
     fetchData();
   }, []);
-
-  // const fetchData = async () => {
-  //   // const data = await fetch("https://fakestoreapi.com/products");
-  //   // const json = await data.json();
-
-  //   // console.log("Data---------------->", json);
-
-  //   //  using live api
-  //   const data = await fetch(
-  //     "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=28.7040592&lng=77.10249019999999&carousel=true&third_party_vendor=1"
-  //   );
-
-  //   const json = await data.json();
-
-  //   console.log(
-  //     "Live api data ",
-  //     json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-  //   );
-  //  console.log(
-  //    "id---------->",
-  //    json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-  //      ?.info.id
-  //  );
-   
-  //   setlistOfRestaurants(
-  //     json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-  //   );
-  //   setfilteredRestaurant(
-  //     json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants
-  //   );
-  // };
-
 
 const fetchData = async () => {
   const data = await fetch(

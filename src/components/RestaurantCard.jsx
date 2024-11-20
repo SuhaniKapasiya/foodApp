@@ -1,6 +1,7 @@
 import { CON_URL } from "../utils/constants";
 
 const RestaurantCard = ({ resdata }) => {
+  
   const styleCard = {
     backgroundColor: "#f0f0f0",
   };

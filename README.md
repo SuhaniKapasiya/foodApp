@@ -1,4 +1,4 @@
-#Namasete ract 🚀
+# Namasete ract 🚀
 
 
 two type of export and import
@@ -14,7 +14,16 @@ export const Componet;
 import {componet} from "path";
 
 
-#React Hooks
+# React Hooks
 (Normal Js utility fun)
--useState() =>Superpowerful State Variable in react
+-useState() =>Superpowerfull State Variable in react
 -useEffect()=>
+
+
+
+#  2type of Routing in web apps
+
+- client Side Routing
+- Server Side Routing
+
+
