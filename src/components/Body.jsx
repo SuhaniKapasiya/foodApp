@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
+import { Link, useParams } from "react-router-dom";
 
 const Body = () => {
   //Local State Variable => Super powerful variabl
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
   const [searchText, setsearchText] = useState("");
   const [filteredRestaurant, setfilteredRestaurant] = useState([]);
+ 
 
   //Whenevr state variable update,react trigger a reconciliation cycle(re-render the componet )
   console.log("Body render ");
@@ -16,6 +18,7 @@ const Body = () => {
   }, []);
 
 const fetchData = async () => {
+  
   const data = await fetch(
     "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=28.7040592&lng=77.10249019999999&carousel=true&third_party_vendor=1"
   );
@@ -41,7 +44,6 @@ const fetchData = async () => {
     <div>
       <div className="filter">
         <div className="search">
-
           {/* onChange Event: The onChange attribute listens for any changes in the
           input field's value. When the user types in the input field, the
           onChange handler is triggered. */}
@@ -57,7 +59,6 @@ const fetchData = async () => {
 
           <button
             onClick={() => {
-
               //FIlter the resturant cards and update the Ui
               //Search Text
 
@@ -83,12 +84,17 @@ const fetchData = async () => {
           Top Rated Resturants
         </button>
       </div>
-      
+
       {/* * -RestaurantContainer */}
 
       <div className="res-container">
         {filteredRestaurant.map((restaurant) => (
-          <RestaurantCard key={restaurant?.info?.id} resdata={restaurant} />
+          <Link
+            key={restaurant?.info?.id}
+            to={"/restaurant/" + restaurant?.info?.id}
+          >
+            <RestaurantCard resdata={restaurant} />
+          </Link>
         ))}
       </div>
     </div>
