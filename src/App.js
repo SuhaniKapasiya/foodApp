@@ -11,6 +11,7 @@ import About from "./components/About";
 import Contact from "./components/Contact";
 import Error from "./components/Error";
 import RestaurantMenu from "./components/RestaurantMenu";
+import Shimmer from "./components/Shimmer";
 
 
 const AppLayout = () => {
@@ -32,7 +33,7 @@ const AppLayout = () => {
           <Route
             path="/grocery"
             element={
-              <Suspense fallback ={<h1>Loading</h1>}>
+              <Suspense fallback ={<Shimmer/>}>
                 <Grocery />
               </Suspense>
             }

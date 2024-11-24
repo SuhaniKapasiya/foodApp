@@ -46,7 +46,8 @@ const fetchData = async () => {
 if (onlineStatus === false)
 
   return (
-    <h1>Look like you are offline !! Please check your internet connection</h1>
+    <h1 className=" text-red-800 font-bold flex items-center justify-center">
+      Look like you are offline !! Please check your internet connection</h1>
   );
 
 
@@ -55,16 +56,15 @@ if (onlineStatus === false)
     <Shimmer />
   ) : (
     <div>
-      <div className="filter">
+      <div className="flex items-center">
         <div className="search">
-          
           {/* onChange Event: The onChange attribute listens for any changes in the
           input field's value. When the user types in the input field, the
           onChange handler is triggered. */}
 
           <input
-            type="text "
-            className="search-box"
+            type="text"
+            className="border border-black px-3 py-2 w-50 ml-2 mb-4"
             value={searchText}
             onChange={(e) => {
               setsearchText(e.target.value);
@@ -72,6 +72,7 @@ if (onlineStatus === false)
           />
 
           <button
+            className=" bg-green-300 px-2 py-2 rounded-md ml-3 mt-3"
             onClick={() => {
               //FIlter the resturant cards and update the Ui
               //Search Text
@@ -87,27 +88,30 @@ if (onlineStatus === false)
           </button>
         </div>
 
-        <button
-          onClick={() => {
-            const filter = listOfRestaurants.filter(
-              (res) => res?.info?.avgRating > 4.3
-            );
-            setfilteredRestaurant(filter);
-          }}
-        >
-          Top Rated Resturants
-        </button>
+        <div className="ml-5">
+          <button
+            className="px-4 py-2 bg-red-300 rounded-md"
+            onClick={() => {
+              const filter = listOfRestaurants.filter(
+                (res) => res?.info?.avgRating > 4.3
+              );
+              setfilteredRestaurant(filter);
+            }}
+          >
+            Top Rated Resturants
+          </button>
+        </div>
       </div>
 
       {/* * -RestaurantContainer */}
 
-      <div className="res-container">
+      <div className="res-container m-4 flex flex-wrap ">
         {filteredRestaurant.map((restaurant) => (
           <Link
             key={restaurant?.info?.id}
             to={"/restaurant/" + restaurant?.info?.id}
           >
-            <RestaurantCard resdata={restaurant} />
+            <RestaurantCard className="" resdata={restaurant} />
           </Link>
         ))}
       </div>

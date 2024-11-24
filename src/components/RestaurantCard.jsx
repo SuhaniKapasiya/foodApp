@@ -2,10 +2,7 @@ import { CON_URL } from "../utils/constants";
 
 const RestaurantCard = ({ resdata }) => {
   
-  const styleCard = {
-    backgroundColor: "#f0f0f0",
-  };
-
+ 
   // console.log("resdata----------------->", resdata);
 
   // Destructure the necessary fields
@@ -13,16 +10,16 @@ const RestaurantCard = ({ resdata }) => {
     resdata?.info || {};
 
   return (
-    <div className="res-card" style={styleCard}>
-      <div>
+    <div className="res-card  bg-slate-400 w-[200px] m-2 rounded-lg h-96 hover:bg-slate-800 hover:text-white">
+      <div className="">
         <img
-          className="res-logo"
+          className="w-44 items-center p-4 px-5 rounded-md"
           src={CON_URL + cloudinaryImageId}
           alt={name}
         />
       </div>
-      <div>
-        <h1 className="title">{name}</h1>
+      <div className="p-3 ">
+        <h1 className="font-bold ">{name}</h1>
         <h3>{cuisines.join(", ")}</h3>
         <h3>Rating: {avgRating}</h3>
         <h3>{costForTwo}</h3>
