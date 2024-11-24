@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 import {LOGO_URL} from "../utils/constants"
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 export const Header = () => {
 
 
@@ -8,7 +9,10 @@ export const Header = () => {
   // because when  we click  over button setbtnNameReact it  re-render react componet
   //and when componet re-render it create new variable btnNameReact and this  btnNameReact value  is crated with updated value by setbtnNameReact
   const [btnNameReact, setbtnNameReact] = useState("Login");
-  console.log("Header render");
+  const onlineStatus = useOnlineStatus();
+
+
+   console.log("Header render");
 
   useEffect(() => {
     console.log("useEffect called");
@@ -21,6 +25,7 @@ export const Header = () => {
       </div>
       <div className="nav-item">
         <ul>
+          <li>Online Status {onlineStatus ? "✅" : "🔴 "}</li>
           <li>
             <Link to="/">Home</Link>
           </li>
@@ -29,6 +34,10 @@ export const Header = () => {
           </li>
           <li>
             <Link to="/contact">Contact Us</Link>
+          </li>
+
+          <li>
+            <Link to="/grocery">Grocery</Link>
           </li>
           <li>Cart</li>
           <button
