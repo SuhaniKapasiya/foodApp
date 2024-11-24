@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import RestaurantCard from "./RestaurantCard";
 import Shimmer from "./Shimmer";
-import { Link, useParams } from "react-router-dom";
+import { Link} from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
+
   //Local State Variable => Super powerful variabl
   const [listOfRestaurants, setlistOfRestaurants] = useState([]);
   const [searchText, setsearchText] = useState("");
   const [filteredRestaurant, setfilteredRestaurant] = useState([]);
+  const onlineStatus = useOnlineStatus();
  
 
-  //Whenevr state variable update,react trigger a reconciliation cycle(re-render the componet )
+  //Whenevr state variable update,react trigger a reconciliation 
+  //cycle(re-render the componet )
   console.log("Body render ");
 
   useEffect(() => {
@@ -20,10 +24,12 @@ const Body = () => {
 const fetchData = async () => {
   
   const data = await fetch(
-    "https://www.swiggy.com/mapi/restaurants/list/v5?offset=0&is-seo-homepage-enabled=true&lat=28.7040592&lng=77.10249019999999&carousel=true&third_party_vendor=1"
+    "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
   );
 
+   
   const json = await data.json();
+ 
 
   // Extract the list of restaurants
     const restaurants =
@@ -37,6 +43,13 @@ const fetchData = async () => {
 };
 
 
+if (onlineStatus === false)
+
+  return (
+    <h1>Look like you are offline !! Please check your internet connection</h1>
+  );
+
+
 
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
@@ -44,6 +57,7 @@ const fetchData = async () => {
     <div>
       <div className="filter">
         <div className="search">
+          
           {/* onChange Event: The onChange attribute listens for any changes in the
           input field's value. When the user types in the input field, the
           onChange handler is triggered. */}
