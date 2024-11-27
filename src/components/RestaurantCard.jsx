@@ -3,10 +3,10 @@ import { CON_URL } from "../utils/constants";
 const RestaurantCard = ({ resdata }) => {
   
  
-  // console.log("resdata----------------->", resdata);
-
+   // console.log("resdata----------------->", resdata);
   // Destructure the necessary fields
-  const { name, avgRating, cuisines, costForTwo, sla, cloudinaryImageId } =
+
+   const { name, avgRating, cuisines, costForTwo, sla, cloudinaryImageId } =
     resdata?.info || {};
 
   return (
@@ -28,5 +28,23 @@ const RestaurantCard = ({ resdata }) => {
     </div>
   );
 };
+export const withLabel = (RestaurantCard) => {
+
+  return (props)=> {
+     return (
+
+       <div>
+        <label className="absolute bg-purple-800 text-black m-2 p-2 rounded-lg mt-0">
+          Top Restro 👌⭐⭐
+        </label>
+        <RestaurantCard {...props} />
+       </div>
+
+     )
+    
+  }
+};
+
+
 
 export default RestaurantCard;

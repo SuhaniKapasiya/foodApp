@@ -12,11 +12,12 @@ class UserClass extends React.Component{
           location: "Default",
         },
       };
-      console.log(this.props.name," child  Constructor");
+      // console.log(this.props.name," child  Constructor");
       
    }
    async componentDidMount(){
-    console.log(this.props.name,"Child Componet mounted");
+    
+    // console.log(this.props.name,"Child Componet mounted");
 
     const data = await fetch("https://api.github.com/users/SuhaniKapasiya");
     const json = await data.json();
@@ -29,7 +30,7 @@ class UserClass extends React.Component{
 
 
       this.timer = setInterval(() => {
-      console.log("Namaste React OP");
+      // console.log("Namaste React OP");
     }, 1000);
  
   
@@ -42,7 +43,7 @@ class UserClass extends React.Component{
    }
 
    componentWillUnmount(){
-    console.log("component Will Unmount");
+    // console.log("component Will Unmount");
     clearInterval(this.timer);
 
     

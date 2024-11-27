@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withLabel} from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link} from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import { wihLabel } from "./RestaurantCard";
 
 const Body = () => {
 
@@ -12,6 +13,7 @@ const Body = () => {
   const [filteredRestaurant, setfilteredRestaurant] = useState([]);
   const onlineStatus = useOnlineStatus();
  
+  const TopRatedRestaurantPromoted = withLabel(RestaurantCard);
 
   //Whenevr state variable update,react trigger a reconciliation 
   //cycle(re-render the componet )
@@ -40,6 +42,11 @@ const fetchData = async () => {
    // Set state with the fetched restaurants
     setlistOfRestaurants(restaurants);
     setfilteredRestaurant(restaurants);
+
+
+  //  console.log("restaurants---------------------->", restaurants);
+   
+    
 };
 
 
@@ -111,7 +118,11 @@ if (onlineStatus === false)
             key={restaurant?.info?.id}
             to={"/restaurant/" + restaurant?.info?.id}
           >
-            <RestaurantCard className="" resdata={restaurant} />
+            {restaurant?.info?.avgRating > 4.3 ? (
+              <TopRatedRestaurantPromoted resdata={restaurant} />
+            ) : (
+              <RestaurantCard  resdata={restaurant} />
+            )}
           </Link>
         ))}
       </div>
