@@ -1,13 +1,29 @@
+import React from 'react'
 
-const itemList = ({list})=>{
+function ItemList({ items }) {
 
-    console.log("itemCards------------>",list);
+    console.log("itemList----------->", items);
+
     
-    return(
-        <div>
+    
+  return (
+    <div>
+      {
+           items.map((item)=>{
+               const { id, name, description, price, defaultPrice } = item?.card.info;
+           return (
+             <div key={id}>
+               <h2>{name}</h2>
+               <p>{description}</p>
+               <p>Price: {price || defaultPrice}</p>
+             </div>
+           );
+           })
 
-        </div>
-    )
+      }
+       
+    </div>
+  );
 }
 
-export default itemList;
+export default ItemList

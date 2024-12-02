@@ -3,7 +3,7 @@ import RestaurantCard, {withLabel} from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link} from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
-import { wihLabel } from "./RestaurantCard";
+
 
 const Body = () => {
 

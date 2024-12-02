@@ -18,13 +18,7 @@ const useRestaurantMenu = (resid)=>{
     const menuData = await fetch(MENU_API+resid);
 
     const json = await menuData.json();
-
-   
-    
-
     setmenu(json.data);
-
-
    } 
 
    return menu;
