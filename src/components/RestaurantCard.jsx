@@ -1,12 +1,13 @@
+import { useContext } from "react";
 import { CON_URL } from "../utils/constants";
+import UserContext from "../utils/UserContext";
 
 const RestaurantCard = ({ resdata }) => {
-  
- 
-   // console.log("resdata----------------->", resdata);
+  // console.log("resdata----------------->", resdata);
   // Destructure the necessary fields
+  const { loggedInUser } = useContext(UserContext);
 
-   const { name, avgRating, cuisines, costForTwo, sla, cloudinaryImageId } =
+  const { name, avgRating, cuisines, costForTwo, sla, cloudinaryImageId } =
     resdata?.info || {};
 
   return (
@@ -24,27 +25,22 @@ const RestaurantCard = ({ resdata }) => {
         <h3>Rating: {avgRating}</h3>
         <h3>{costForTwo}</h3>
         <h3>Delivery: {sla?.slaString || sla?.deliveryTime}</h3>
+        <h3>User : {loggedInUser}</h3>
       </div>
     </div>
   );
 };
 export const withLabel = (RestaurantCard) => {
-
-  return (props)=> {
-     return (
-
-       <div>
+  return (props) => {
+    return (
+      <div>
         <label className="absolute bg-purple-800 text-black m-2 p-2 rounded-lg mt-0">
           Top Restro 👌⭐⭐
         </label>
         <RestaurantCard {...props} />
-       </div>
-
-     )
-    
-  }
+      </div>
+    );
+  };
 };
-
-
 
 export default RestaurantCard;

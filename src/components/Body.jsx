@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import RestaurantCard, {withLabel} from "./RestaurantCard";
 import Shimmer from "./Shimmer";
 import { Link} from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 
 const Body = () => {
@@ -12,6 +13,7 @@ const Body = () => {
   const [searchText, setsearchText] = useState("");
   const [filteredRestaurant, setfilteredRestaurant] = useState([]);
   const onlineStatus = useOnlineStatus();
+  const { loggedInUser, setUserName } = useContext(UserContext);
  
   const TopRatedRestaurantPromoted = withLabel(RestaurantCard);
 
@@ -108,6 +110,16 @@ if (onlineStatus === false)
             Top Rated Resturants
           </button>
         </div>
+
+        <div className="flex m-4 p-4 items-center">
+          <label>Name</label>
+          <input
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => setUserName(e.target.value)}
+            className="border border-black p-2 ml-4"
+          />
+        </div>
       </div>
 
       {/* * -RestaurantContainer */}
@@ -121,7 +133,7 @@ if (onlineStatus === false)
             {restaurant?.info?.avgRating > 4.3 ? (
               <TopRatedRestaurantPromoted resdata={restaurant} />
             ) : (
-              <RestaurantCard  resdata={restaurant} />
+              <RestaurantCard resdata={restaurant} />
             )}
           </Link>
         ))}

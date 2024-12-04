@@ -1,18 +1,17 @@
-import React, { lazy, useEffect, useState } from "react";
-import {LOGO_URL} from "../utils/constants"
+import React, { lazy, useContext, useEffect, useState } from "react";
+import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 export const Header = () => {
-
-
   // if   btnNameReact  is const variable then on click how it value change to logout
   // because when  we click  over button setbtnNameReact it  re-render react componet
   //and when componet re-render it create new variable btnNameReact and this  btnNameReact value  is crated with updated value by setbtnNameReact
   const [btnNameReact, setbtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
+  const { loggedInUser } = useContext(UserContext);
 
-
-   console.log("Header render");
+  console.log("Header render");
 
   useEffect(() => {
     console.log("useEffect called");
@@ -53,6 +52,8 @@ export const Header = () => {
               {btnNameReact}
             </button>
           </div>
+
+          <li className="font-bold ml-2">{loggedInUser}</li>
         </ul>
       </div>
     </div>
