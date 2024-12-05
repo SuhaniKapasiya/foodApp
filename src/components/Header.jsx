@@ -1,8 +1,9 @@
-import React, { lazy, useContext, useEffect, useState } from "react";
+import React, {useContext, useEffect, useState } from "react";
 import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 export const Header = () => {
   // if   btnNameReact  is const variable then on click how it value change to logout
   // because when  we click  over button setbtnNameReact it  re-render react componet
@@ -10,6 +11,11 @@ export const Header = () => {
   const [btnNameReact, setbtnNameReact] = useState("Login");
   const onlineStatus = useOnlineStatus();
   const { loggedInUser } = useContext(UserContext);
+  
+  // Subscribing to the store using a Selector
+  const cartItems = useSelector((store) => store.cart.items);
+  console.log("cartItems ---->", cartItems);
+  
 
   console.log("Header render");
 
@@ -38,7 +44,9 @@ export const Header = () => {
           <li className="px-2 text-blue-800 hover:text-blue-950 underline">
             <Link to="/grocery">Grocery</Link>
           </li>
-          <li className="px-2">Cart</li>
+          <li className="px-2  text-blue-800 hover:text-blue-950 underline">
+            <Link to="/cart">Cart-({cartItems?.length || 0} item)</Link>
+          </li>
           <div className="flex items-center">
             <button
               className="px-4 py-2 bg-red-400 rounded-md "

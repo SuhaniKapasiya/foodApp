@@ -10,11 +10,11 @@ import { useState } from "react";
 const RestaurantMenu =()=>{
 
   
-   const { resid } = useParams();
+  const { resid } = useParams();
 
   const [showIndex , setshowIndex] = useState(0);
 
-     const menu = useRestaurantMenu(resid)
+  const menu = useRestaurantMenu(resid)
 
    if (menu === null) return <Shimmer />;
 

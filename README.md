@@ -27,3 +27,12 @@ import {componet} from "path";
 - Server Side Routing
 
 
+# Redux Toolkit
+ - Install @redux.js/toolkit and react-redux
+    * npm i @reduxjs/toolkit 
+    * npm i react-redux
+ - Builds our store 
+ - Connect our store to our app
+ - slice(cartSlice)
+ - dispatch(action)     
+ - Selector
