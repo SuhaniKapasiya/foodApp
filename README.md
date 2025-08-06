@@ -1,4 +1,4 @@
-# Namasete ract 🚀
+# Namasete react 🚀
 
 
 two type of export and import
